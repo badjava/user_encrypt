@@ -1,0 +1,4 @@
+services:
+  user_encrypt:
+    class: Drupal\user_encrypt\Encrypt
+    arguments: ["@config.factory", "@encryption"]

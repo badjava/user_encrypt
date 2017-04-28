@@ -4,3 +4,10 @@
  * @file
  * User Encrypt hooks implementation.
  */
+
+/**
+ * Implements hook_entity_type_build();
+ */
+function user_encrypt_entity_type_build(array &$entity_types) {
+  $entity_types['user']->setClass('Drupal\user_encrypt\UserEncrypt');
+}
