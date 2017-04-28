@@ -14,9 +14,7 @@ class UserEncrypt extends User {
    * {@inheritdoc}
    */
   public function getEmail() {
-    $email = parent::getEmail();
-
-    // TODO: Decrypt the email.
+    $email = \Drupal::service('user_encrypt')->decrypt(parent::getEmail());
 
     return $email;
   }
@@ -24,10 +22,10 @@ class UserEncrypt extends User {
   /**
    * {@inheritdoc}
    */
-  public function setEmail($mail) {
-    // TODO: Encrypt the email.
+  public function setEmail($email) {
+    $email = \Drupal::service('user_encrypt')->encrypt($email);
 
-    parent::setEmail($mail);
+    return parent::setEmail($email);
   }
 
   /**
@@ -37,7 +35,7 @@ class UserEncrypt extends User {
     $account_name = parent::getAccountName();
 
     if ($account_name) {
-      // TODO: Decrypt username;
+      $account_name = \Drupal::service('user_encrypt')->decrypt($account_name);
     }
 
     return $account_name;
@@ -47,9 +45,28 @@ class UserEncrypt extends User {
    * {@inheritdoc}
    */
   public function setUsername($username) {
-    // TODO: Encrypt username.
+    $username = \Drupal::service('user_encrypt')->encrypt($username);
 
-    parent::setUsername($username);
+    return parent::setUsername($username);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function get($field_name) {
+    $field_value = parent::get($field_name);
+    $field_value_decrypted = \Drupal::service('user_encrypt')->decrypt($field_value);
+
+    return $field_value_decrypted;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function set($name, $value, $notify = TRUE) {
+    $encrypted_value = \Drupal::service('user_encrypt')->encrypt($value);
+
+    return parent::set($name, $encrypted_value, $notify);
   }
 
 }

@@ -41,10 +41,10 @@ class Encrypt {
    *   The EncryptService class object provided by the Encrypt module.
    */
   public function __construct(ConfigFactory $config_factory, EncryptService $encrypt_service) {
-    $this->config = $config_factory->getEditable('user_entity.settings');
+    $this->config = $config_factory->getEditable('user_encrypt.settings');
     $this->encryptService = $encrypt_service;
 
-    $this->isEncryptionEnabled = (bool) $this->config->get('encrypt_user_data');
+    $this->isEncryptionEnabled = (bool) $this->config->get('user_encrypt');
     $this->encryptionProfile = $this->loadEncryptionProfile($this->config->get('encrypt_profile'));
   }
 
@@ -53,9 +53,16 @@ class Encrypt {
    *
    * @param $text
    *   The plain text to encrypt.
+   *
+   * @return string
+   *   The encrypted text.
    */
   public function encrypt($text) {
+    if (!$this->isEncryptionEnabled) {
+      return $text;
+    }
 
+    return $this->encryptService->encrypt($text, $this->encryptionProfile);
   }
 
   /**
@@ -63,9 +70,21 @@ class Encrypt {
    *
    * @param $text
    *   The encrypted text to decrypt.
+   *
+   * @return string
+   *   The decrypted the text.
    */
   public function decrypt($text) {
+    if (!$this->isEncryptionEnabled) {
+      return $text;
+    }
 
+    $decrypted_value = $this->encryptService->decrypt($text, $this->encryptionProfile);
+    if ($decrypted_value === FALSE) {
+      return $text;
+    }
+
+    return $decrypted_value;
   }
 
   /**
