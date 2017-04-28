@@ -1,0 +1,6 @@
+name: "User Encrypt"
+description: "Provides encryption for user's data."
+package: Encryption
+type: module
+dependencies:
+  - encrypt
