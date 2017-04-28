@@ -1,0 +1,5 @@
+user_encrypt.settings:
+  title: 'User Encrypt settings'
+  route_name: user_encrypt.settings
+  description: 'Configure settings for User Encrypt.'
+  parent: system.admin_config_system

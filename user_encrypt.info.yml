@@ -1,6 +1,8 @@
 name: "User Encrypt"
-description: "Provides encryption for user's data."
+description: "Provides encryption for user data."
 package: Encryption
 type: module
+core: 8.x
+
 dependencies:
   - encrypt

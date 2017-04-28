@@ -1,0 +1,7 @@
+user_encrypt.settings:
+  type: config_object
+  label: 'User Encrypt Settings'
+  mapping:
+    field_encrypt_enforce:
+      type: boolean
+      label: 'Enforce encryption on all user entity fields.'
