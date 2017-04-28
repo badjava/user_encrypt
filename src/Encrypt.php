@@ -2,6 +2,7 @@
 
 namespace Drupal\user_encrypt;
 
+use Drupal\Core\Config\ConfigFactory;
 use Drupal\encrypt\EncryptService;
 use Drupal\encrypt\Entity\EncryptionProfile;
 
@@ -29,10 +30,12 @@ class Encrypt {
 
   protected $encryptionProfile;
 
+  protected $isEncryptionEnabled;
+
   /**
    * Encrypt constructor.
    *
-   * @param \Drupal\user_encrypt\ConfigFactory $config_factory
+   * @param \Drupal\Core\Config\ConfigFactory $config_factory
    *   The Config Factory object.
    * @param \Drupal\encrypt\EncryptService $encrypt_service
    *   The EncryptService class object provided by the Encrypt module.
@@ -41,7 +44,8 @@ class Encrypt {
     $this->config = $config_factory->getEditable('user_entity.settings');
     $this->encryptService = $encrypt_service;
 
-//    $this->config->get($config_key);
+    $this->isEncryptionEnabled = (bool) $this->config->get('encrypt_user_data');
+    $this->encryptionProfile = $this->loadEncryptionProfile($this->config->get('encrypt_profile'));
   }
 
   /**
@@ -76,4 +80,5 @@ class Encrypt {
   protected function loadEncryptionProfile($encryption_profile_name) {
     return EncryptionProfile::load($encryption_profile_name);
   }
+
 }
