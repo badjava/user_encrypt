@@ -11,7 +11,7 @@ use Drupal\Tests\BrowserTestBase;
  *
  * @group user_encrypt
  */
-class UserEncrypt extends BrowserTestBase {
+class UserEncryptTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}

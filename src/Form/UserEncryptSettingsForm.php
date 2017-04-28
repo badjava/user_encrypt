@@ -36,7 +36,7 @@ class UserEncryptSettingsForm extends ConfigFormBase {
 
     $form['field_encrypt_enforce'] = array(
       '#type' => 'checkbox',
-      '#title' => $this->t('Enforce encryption on fields'),
+      '#title' => $this->t('Enforce field encryption'),
       '#default_value' => $config->get('field_encrypt_enforce'),
       '#description' => $this->t('Enforces encryption on any fields created on a user entity.'),
     );
