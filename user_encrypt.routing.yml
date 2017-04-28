@@ -1,7 +1,7 @@
 user_encrypt.settings:
-  path: '/admin/config/system/user_encrypt/settings'
+  path: '/admin/config/people/encrypt'
   defaults:
     _form: '\Drupal\user_encrypt\Form\UserEncryptSettingsForm'
     _title: 'User Encrypt settings'
   requirements:
-    _permission: 'administer encrypt'
+    _permission: 'administer account settings'
