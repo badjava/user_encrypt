@@ -1,0 +1,6 @@
+{
+    "name": "badjava/user_encrypt",
+    "description": "Drupal 8 module that encrypts user data.",
+    "license": "GPL-2.0+",
+    "type": "drupal-module"
+}
