@@ -3,6 +3,7 @@ description: "Provides encryption for user data."
 package: Encryption
 type: module
 core: 8.x
+configure: admin/config/people/encrypt
 
 dependencies:
   - encrypt
