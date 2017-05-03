@@ -38,7 +38,7 @@ class UserEncryptSettingsForm extends ConfigFormBase {
     $encryption_options = \Drupal::service('encrypt.encryption_profile.manager')->getEncryptionProfileNamesAsOptions();
 
     if (count($encryption_options) > 0) {
-      $form['element_encrypt']['encrypt_user'] = [
+      $form['element_encrypt']['user_encrypt'] = [
         '#type' => 'checkbox',
         '#title' => t('Encrypt user data'),
         '#description' => '',
