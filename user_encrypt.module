@@ -5,9 +5,13 @@
  * User Encrypt hooks implementation.
  */
 
+use Drupal\Core\Entity\EntityTypeInterface;
+
 /**
- * Implements hook_entity_type_build();
+ * Implements hook_entity_base_field_info_alter().
  */
-function user_encrypt_entity_type_build(array &$entity_types) {
-  $entity_types['user']->setClass('Drupal\user_encrypt\UserEncrypt');
+function user_encrypt_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() == 'user') {
+    $fields['name']->getItemDefinition()->setClass('\Drupal\user_encrypt\UserEncryptNameItem');
+  }
 }

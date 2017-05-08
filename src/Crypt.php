@@ -7,11 +7,11 @@ use Drupal\encrypt\EncryptService;
 use Drupal\encrypt\Entity\EncryptionProfile;
 
 /**
- * Class Encrypt.
+ * Class Crypt.
  *
  * @package Drupal\user_encrypt
  */
-class Encrypt {
+class Crypt {
 
   /**
    * The EncryptService object.
@@ -33,7 +33,7 @@ class Encrypt {
   protected $isEncryptionEnabled;
 
   /**
-   * Encrypt constructor.
+   * Crypt constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactory $config_factory
    *   The Config Factory object.
